@@ -124,7 +124,11 @@
               data-aos="fade-right"
               data-aos-duration="1000"
             >
-              <img src="assets/img/aboutfto.png" class="img-fluid" alt="" />
+              <img
+                src="assets/img/aboutfto.png"
+                class="img-fluid imgabout"
+                alt=""
+              />
             </div>
             <div
               class="col-lg-8 pt-4 pt-lg-0 mt-3 content"
@@ -282,12 +286,7 @@
                 />
                 <div class="portfolio-info">
                   <h4>Website Sistem Informasi Cafe Love Jamu</h4>
-                  <hr />
-                  <p class="text-primary">
-                    <strong>Php, Laravel, MySql</strong>
-                  </p>
                   <p>Landing Page Website</p>
-                  <hr />
                   <div class="portfolio-links">
                     <a
                       href="https://github.com/gengtzy/gengtzy.github.io"
@@ -310,7 +309,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain1.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -319,7 +318,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain2.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -328,7 +327,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain3.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -342,7 +341,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain4.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -351,7 +350,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain5.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -360,7 +359,7 @@
               <div class="shadow bg-body rounded">
                 <img
                   src="assets/img/portfolio/Desain6.png"
-                  class="img-fluid shadow rounded"
+                  class="img-fluid shadow rounded imgdesign"
                   alt=""
                 />
               </div>
@@ -370,7 +369,7 @@
       </section>
       <!-- End Portfolio Section -->
 
-      <!-- ======= Services Section ======= -->
+      <!-- ======= Sertificate Section ======= -->
       <section id="sertificate" class="services">
         <div class="container" data-aos="fade-up" data-aos-duration="1000">
           <div class="section-title">
@@ -398,10 +397,13 @@
               data-aos-duration="1000"
             >
               <div class="icon-box">
-                <img src="assets/img/Sertifikat Literasi Digital.png" alt="" />
+                <img
+                  src="assets/img/Sertifikat Pengenalan React.Js.png"
+                  alt=""
+                />
                 <p>
-                  <strong>Literasi Digital</strong><br />
-                  <span>By PT KOMINFO</span>
+                  <strong>Pengenalan React.js</strong><br />
+                  <span>By Bangkalan Dev</span>
                 </p>
               </div>
             </div>
@@ -412,17 +414,35 @@
               data-aos-duration="1000"
             >
               <div class="icon-box">
-                <img src="assets/img/Sertifikat Literasi Digital.png" alt="" />
+                <img src="assets/img/Sertifikat Canva.png" alt="" />
                 <p>
-                  <strong>Literasi Digital</strong><br />
-                  <span>By PT KOMINFO</span>
+                  <strong>Designing Using Canva</strong><br />
+                  <span>By MySkill</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- <div class="learnMore">
+              <button id="learnMoreBtn2" class="projectlist">Learn More</button>
+            </div> -->
+
+            <div
+              class="col-lg-4 col-md-6 mt-4 d-flex align-items-stretch hidden"
+              data-aos="fade-up"
+              data-aos-duration="1000"
+            >
+              <div class="icon-box">
+                <img src="assets/img/Sertifikat DevCoach 139.png" alt="" />
+                <p>
+                  <strong>Front-end | CSS Pre-processor</strong><br />
+                  <span>By Dicoding</span>
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <!-- End Services Section -->
+      <!-- End Sertificate Section -->
 
       <!-- ======= Contact Section ======= -->
       <section id="contact" class="contact">
@@ -553,6 +573,20 @@
           // Sembunyikan tombol setelah diklik
           this.style.display = "none";
         });
+
+      const img = document.querySelector(".imgabout");
+
+      img.addEventListener("mousemove", (e) => {
+        const { width, height } = img.getBoundingClientRect();
+        const x = (e.offsetX / width - 0.5) * 45; // Rotasi lebih besar
+        const y = (e.offsetY / height - 0.5) * 45;
+
+        img.style.transform = `rotateX(${y}deg) rotateY(${x}deg) scale(1.05)`;
+      });
+
+      img.addEventListener("mouseleave", () => {
+        img.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
+      });
     </script>
 
     <!-- Template Main JS File -->
