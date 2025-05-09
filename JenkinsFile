@@ -2,33 +2,34 @@ pipeline {
     agent any
 
     environment {
-        GIT_USERNAME = 'gengtzy'
-        GIT_PASSWORD = credentials('github-token')
+        REPO_URL = 'https://github.com/gengtzy/gengtzy.github.io.git'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/gengtzy/gengtzy.github.io.git', credentialsId: 'github-token'
+                git url: "${REPO_URL}", credentialsId: 'github-tokens'
             }
         }
 
         stage('Build') {
             steps {
                 echo '📦 Menjalankan perintah build...'
-                bat 'dir'  // perintah Windows, ganti dengan build kamu jika ada
+                bat 'dir'
             }
         }
 
         stage('Deploy') {
             steps {
-                echo '🚀 Push balik ke GitHub (jika perlu)'
-                bat '''
-                git config user.name "gengtzy"
-                git config user.email "agengpujipangestu3@gmail.com"
-                git remote set-url origin https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/gengtzy/gengtzy.github.io.git
-                git push origin main
-                '''
+                echo '🚀 Push balik ke GitHub'
+                withCredentials([usernamePassword(credentialsId: 'github-tokens', usernameVariable: 'GIT_USER', passwordVariable: 'GIT_PASS')]) {
+                    bat """
+                        git config user.name "gengtzy"
+                        git config user.email "agengpujipangestu3@gmail.com"
+                        git remote set-url origin https://${GIT_USER}:${GIT_PASS}@github.com/gengtzy/gengtzy.github.io.git
+                        git push origin main
+                    """
+                }
             }
         }
     }
