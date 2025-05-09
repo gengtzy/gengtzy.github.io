@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    environment {
+        GIT_USERNAME = 'gengtzy'
+        GIT_PASSWORD = credentials('github-token')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/gengtzy/gengtzy.github.io.git', credentialsId: 'github-token'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo '📦 Menjalankan perintah build...'
+                bat 'dir'  // perintah Windows, ganti dengan build kamu jika ada
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo '🚀 Push balik ke GitHub (jika perlu)'
+                bat '''
+                git config user.name "gengtzy"
+                git config user.email "agengpujipangestu3@gmail.com"
+                git remote set-url origin https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/gengtzy/gengtzy.github.io.git
+                git push origin main
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Build dan deploy berhasil!'
+        }
+        failure {
+            echo '❌ Ada yang error.'
+        }
+    }
+}
